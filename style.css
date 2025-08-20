@@ -1,0 +1,75 @@
+/* style.css */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #141E30, #243B55);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #scoreboard {
+      font-size: 20px;
+      margin: 10px 0 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 100px);
+      grid-gap: 15px;
+    }
+
+    .hole {
+      width: 100px;
+      height: 100px;
+      background: #222;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .mole {
+      width: 80px;
+      height: 80px;
+      background: brown;
+      border-radius: 50%;
+      position: absolute;
+      bottom: -100px; /* hidden */
+      left: 50%;
+      transform: translateX(-50%);
+      transition: bottom 0.2s ease;
+    }
+
+    .up {
+      bottom: 0; /* pops up */
+    }
+
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #00C9A7;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #00A387;
+    }
+  
