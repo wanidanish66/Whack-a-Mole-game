@@ -1,5 +1,4 @@
-// script.js
-    const grid = document.getElementById("gameGrid");
+const grid = document.getElementById("gameGrid");
     const scoreEl = document.getElementById("score");
     const timeEl = document.getElementById("time");
     const startBtn = document.getElementById("startBtn");
@@ -50,7 +49,7 @@
         timeEl.textContent = timeLeft;
         if (timeLeft <= 0) {
           stopGame();
-          alert("Game Over! Your score: " + score);
+          alert("⏰ Time’s up! Your score: " + score);
         }
       }, 1000);
 
@@ -63,9 +62,9 @@
       startBtn.disabled = false;
       stopBtn.disabled = true;
       moles.forEach(m => m.classList.remove("up"));
+      alert("🛑 Game Stopped! Your score: " + score);
     }
 
     startBtn.addEventListener("click", startGame);
     stopBtn.addEventListener("click", stopGame);
     stopBtn.disabled = true;
-  
