@@ -44,12 +44,12 @@
       grid-gap: 15px;
       justify-content: center;
       margin: 0 auto;
-      max-width: 400px; /* keeps grid from stretching too much */
+      max-width: 400px;
     }
 
     .hole {
       width: 100%;
-      aspect-ratio: 1 / 1; /* perfect circle */
+      aspect-ratio: 1 / 1;
       background: #111;
       border-radius: 50%;
       position: relative;
@@ -105,26 +105,21 @@
       box-shadow: 0 0 15px #00f2fe, 0 0 25px #4facfe;
     }
 
-    /* Responsive */
     @media (max-width: 600px) {
       h1 {
         font-size: 1.5rem;
       }
-
       #scoreboard {
         font-size: 16px;
       }
-
       .grid {
         grid-gap: 10px;
         max-width: 95%;
       }
-
       .controls {
         flex-direction: column;
         gap: 12px;
       }
-
       button {
         width: 100%;
         max-width: 220px;
@@ -145,12 +140,21 @@
     <button id="stopBtn">Stop Game</button>
   </div>
 
+  <!-- Audio Effects -->
+  <audio id="hitSound" src="hit.mp3" preload="auto"></audio>
+  <audio id="missSound" src="miss.mp3" preload="auto"></audio>
+  <audio id="gameOverSound" src="gameover.mp3" preload="auto"></audio>
+
   <script>
     const grid = document.getElementById("gameGrid");
     const scoreEl = document.getElementById("score");
     const timeEl = document.getElementById("time");
     const startBtn = document.getElementById("startBtn");
     const stopBtn = document.getElementById("stopBtn");
+
+    const hitSound = document.getElementById("hitSound");
+    const missSound = document.getElementById("missSound");
+    const gameOverSound = document.getElementById("gameOverSound");
 
     let score = 0;
     let timeLeft = 30;
@@ -172,6 +176,14 @@
           score++;
           scoreEl.textContent = score;
           mole.classList.remove("up");
+
+          // Play hit sound
+          hitSound.currentTime = 0;
+          hitSound.play();
+        } else {
+          // Play miss sound
+          missSound.currentTime = 0;
+          missSound.play();
         }
       });
     }
@@ -201,7 +213,7 @@
         }
       }, 1000);
 
-      moleTimer = setInterval(randomMole, 600);
+      moleTimer = setInterval(randomMole, 800);
     }
 
     function stopGame() {
@@ -210,6 +222,11 @@
       startBtn.disabled = false;
       stopBtn.disabled = true;
       moles.forEach(m => m.classList.remove("up"));
+
+      // Play game over sound
+      gameOverSound.currentTime = 0;
+      gameOverSound.play();
+
       alert("🛑 Game Stopped! Your score: " + score);
     }
 
